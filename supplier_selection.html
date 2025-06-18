@@ -42,7 +42,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Supplier Onboarding Initiation</title>
+    <title>Supplier Registration and Onboarding Initiation</title>
     <style>
         body {
             font-family: Arial, Helvetica, sans-serif;
@@ -72,7 +72,7 @@
             margin-bottom: 5px;
             color: #333;
         }
-        select, input[type="email"], button {
+        select, input[type="email"],input[type="text"], button {
             width: 100%;
             padding: 8px;
             margin-bottom: 10px;
@@ -92,7 +92,7 @@
         button:hover {
             background-color: #0056b3;
         }
-        #additionalFields, #emailField {
+        #additionalFields, #emailField, #supplierField {
             display: none;
         }
         footer {
@@ -105,7 +105,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>Supplier Onboarding Initiation</h1>
+        <h1>Supplier Registration and Onboarding Initiation</h1>
         <div class="form-group">
             <label for="supplierType">Supplier Type *</label>
             <select id="supplierType" required>
@@ -139,6 +139,10 @@
                 </div>
             </div>
         </div>
+        <div id="supplierField" class="form-group">
+            <label for="newSupplierField">Supplier Name *</label>
+            <input type="text" id="newSupplierField" placeholder="Enter supplier name" required>
+        </div>
         <div id="emailField" class="form-group">
             <label for="newContactEmail">Contact Email *</label>
             <input type="email" id="newContactEmail" placeholder="Enter contact email" required>
@@ -171,24 +175,33 @@
         const contactEmail = document.getElementById('contactEmail');
         const nameLabel = document.getElementById('nameLabel');
         const emailField = document.getElementById('emailField');
+        const supplierField = document.getElementById('supplierField');
         const newContactEmail = document.getElementById('newContactEmail');
+        const newSupplierField = document.getElementById('newSupplierField');
         const sendEmailButton = document.getElementById('sendEmail');
+        
 
         supplierType.addEventListener('change', function() {
             if (this.value === 'Existing') {
                 additionalFields.style.display = 'block';
                 emailField.style.display = 'none';
+                supplierField.style.display = 'none';
                 newContactEmail.value = '';
+                newSupplierField.value = '';
+                sendEmailButton.innerText="Send Email"
             } else if (this.value === 'New') {
                 additionalFields.style.display = 'none';
                 emailField.style.display = 'block';
+                supplierField.style.display = 'block';
                 nameEmailFields.style.display = 'none';
                 infoProvider.value = '';
                 nameSelect.innerHTML = '<option value="">Select Name</option>';
                 contactEmail.innerHTML = '<option value="">Select Email</option>';
+                sendEmailButton.innerText="Save and Send Email"
             } else {
                 additionalFields.style.display = 'none';
                 emailField.style.display = 'none';
+                supplierField.style.display = 'none';
                 nameEmailFields.style.display = 'none';
             }
         });
@@ -238,7 +251,8 @@
                 }
             } else if (supplierTypeVal === 'New') {
                 emailVal = newContactEmail.value;
-                if (!supplierTypeVal || !emailVal) {
+                supplierVal=newSupplierField.value;
+                if (!supplierTypeVal || !emailVal || !supplierVal) {
                     alert('Please fill in all required fields.');
                     return;
                 }
