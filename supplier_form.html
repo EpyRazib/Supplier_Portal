@@ -914,6 +914,38 @@
                                     <label for="payment-method-${unitCount}">Payment Method *</label>
                                     <input type="text" id="payment-method-${unitCount}" required>
                                 </div>
+                                <div class="form-section">
+                                <h3>Document Hub</h3>
+                                <div class="form-group">
+                                    <label for="trade_license">Trade License *</label>
+                                    <input type="file" id="trade_license" name="trade_license" accept=".pdf,.jpg,.png" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="bin">BIN *</label>
+                                    <input type="file" id="bin" name="bin" accept=".pdf,.jpg,.png" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="tin">TIN *</label>
+                                    <input type="file" id="tin" name="tin" accept=".pdf,.jpg,.png" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="pi">PI *</label>
+                                    <input type="file" id="pi" name="pi" accept=".pdf,.jpg,.png" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="additional_docs">Additional Documents (Optional)</label>
+                                    <input type="file" id="additional_docs" name="additional_docs" accept=".pdf,.jpg,.png" multiple>
+                                </div>
+                            </div>
+                            <div class="form-section">
+                                <h3>Declaration</h3>
+                                <div class="form-group">
+                                    <label for="declaration">
+                                        <input type="checkbox" id="declaration" name="declaration" required>
+                                        I hereby declare that all the information provided above is true and accurate to the best of my knowledge.
+                                    </label>
+                                </div>
+                            </div>
                                 <button class="previous" data-unit="${unitCount}" data-section="payment-info">Previous</button>
                                 <button class="submit" data-unit="${unitCount}">Submit</button>
                             </div>
